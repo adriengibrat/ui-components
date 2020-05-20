@@ -1,0 +1,161 @@
+import { Description, Meta, Preview, Props, Story, html, number } from '@open-wc/demoing-storybook';
+import { UiButton } from '../ui-button';
+import { UiButtonGroup } from '.';
+
+<Meta title="ui-components/ui-button-group" component={UiButtonGroup} subcomponents={[UiButton]} />
+
+# &lt;ui-button-group&gt;
+
+### Ties buttons together
+
+<Description of="ui-button-group" />
+
+<Preview>
+  <Story name="group">
+  { html`
+  <ui-button-group>
+    <ui-button>group</ui-button>
+    <ui-button>of</ui-button>
+    <ui-button>buttons</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="dropdown">
+  { html`
+  <ui-button-group>
+    <ui-button>dropdown</ui-button>
+    <ui-button theme="dropdown"></ui-button>
+  </ui-button-group>` }
+  </Story>
+</Preview>
+
+<Story name="playground" parameters={{
+  docs: { disable: true },
+  options: { selectedPanel: 'storybook/knobs/panel' },
+}}>
+{ () => html`
+  <ui-button-group>
+    ${Array.from(Array(number('Number of buttons', 3, { range: true, min: 1, max: 10, step: 1 }))).map(
+      (_, i) => html`<ui-button>${i+1}</ui-button>`
+    )}
+  </ui-button-group>` }
+</Story>
+
+
+## States
+
+<Preview>
+  <Story name="busy">
+  { html`
+  <ui-button-group busy>
+    <ui-button>busy</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="disabled">
+  { html`
+  <ui-button-group disabled>
+    <ui-button>disabled</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="hidden">
+  { html`
+  <em style="line-height: 2.625em">[hidden]</em>
+  <ui-button-group hidden>
+    <ui-button>hidden</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="rtl">
+  { html`<ui-button-group dir="rtl">
+    <ui-button>rtl</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+</Preview>
+
+## Theming
+
+<Preview columns="3">
+  <Story name="action">
+  { html`
+  <ui-button-group theme="action">
+    <ui-button>action</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="danger">
+  { html`
+  <ui-button-group theme="danger">
+    <ui-button>danger</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="valid">
+  { html`
+  <ui-button-group theme="valid">
+    <ui-button>valid</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="outline">
+  { html`
+  <ui-button-group theme="action outline">
+    <ui-button>outlined</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="round">
+  { html`
+  <ui-button-group theme="round">
+    <ui-button>round</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="ghost">
+  { html`
+  <ui-button-group theme="ghost">
+    <ui-button>ghost</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="override">
+  { html`
+  <ui-button-group theme="valid outline">
+    <ui-button>valid</ui-button>
+    <ui-button theme="action">action</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+</Preview>
+
+## Sizing
+
+<Preview>
+  <Story id="ui-components-ui-button-group--group"></Story>
+  <Story name="small">
+  { html`
+  <ui-button-group theme="small">
+    <ui-button>small</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="font-size">
+  { html`
+  <ui-button-group style="font-size: .8em">
+    <ui-button>small font</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+  <Story name="padding">
+  { html`
+  <ui-button-group style="--ui-button-padding: .25em">
+    <ui-button>custom padding</ui-button>
+    <ui-button>group</ui-button>
+  </ui-button-group>` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-button-group"/>

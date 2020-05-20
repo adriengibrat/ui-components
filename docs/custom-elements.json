@@ -1,0 +1,530 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "form-control",
+      "path": "./src/components/form-control/form-control.ts",
+      "description": "Wrap &lt;ui-button&gt; or any component that emit `formcontrol` event to behave like [native &lt;button&gt;](https://developer.mozilla.org/fr/docs/Web/HTML/Element/Button).",
+      "attributes": [
+        {
+          "name": "name",
+          "description": "Defines the form data name when the associated form is submitted.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "value",
+          "description": "Defines the form data value when the associated form is submitted."
+        },
+        {
+          "name": "type",
+          "description": "Defines the default behavior for the associated form:\n`submit` sent associated form data to server, *default behavior when no attibute*,\n`reset` restore all associated form controls to their initial values.",
+          "type": "string | undefined",
+          "default": "\"submit\""
+        },
+        {
+          "name": "formaction",
+          "description": "Specifies URL where to send the form data when associated form is submitted. Only for type=\"submit\".",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formenctype",
+          "description": "Specifies how form data should be encoded when associated form is submitted. Only for type=\"submit\".\nPossible values are `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formmethod",
+          "description": "Specifies which HTTP method to use to send the form data. Only for type=\"submit\".\nPossible values are `get` or `post`.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formnovalidate",
+          "description": "Specifies that the form data should not be validated before submission. Only for type=\"submit\".",
+          "type": "boolean | undefined",
+          "default": "false"
+        },
+        {
+          "name": "formtarget",
+          "description": "Specifies where to display the response after submitting the form. Only for type=\"submit\".\nPossible values are `_blank`, `_self`, `_parent`, `_top` or a  *framename*.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "form",
+          "description": "Associated form anywhere in the document by specifying it's *id*, it can override an ancestor form element.",
+          "type": "HTMLFormElement | null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "name",
+          "attribute": "name",
+          "description": "Defines the form data name when the associated form is submitted.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "description": "Defines the form data value when the associated form is submitted."
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "description": "Defines the default behavior for the associated form:\n`submit` sent associated form data to server, *default behavior when no attibute*,\n`reset` restore all associated form controls to their initial values.",
+          "type": "string | undefined",
+          "default": "\"submit\""
+        },
+        {
+          "name": "formAction",
+          "attribute": "formaction",
+          "description": "Specifies URL where to send the form data when associated form is submitted. Only for type=\"submit\".",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formEnctype",
+          "attribute": "formenctype",
+          "description": "Specifies how form data should be encoded when associated form is submitted. Only for type=\"submit\".\nPossible values are `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formMethod",
+          "attribute": "formmethod",
+          "description": "Specifies which HTTP method to use to send the form data. Only for type=\"submit\".\nPossible values are `get` or `post`.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "formNoValidate",
+          "attribute": "formnovalidate",
+          "description": "Specifies that the form data should not be validated before submission. Only for type=\"submit\".",
+          "type": "boolean | undefined",
+          "default": "false"
+        },
+        {
+          "name": "formTarget",
+          "attribute": "formtarget",
+          "description": "Specifies where to display the response after submitting the form. Only for type=\"submit\".\nPossible values are `_blank`, `_self`, `_parent`, `_top` or a  *framename*.",
+          "type": "string | undefined"
+        },
+        {
+          "name": "labels",
+          "description": "Get list of attached `label` elements.",
+          "type": "NodeListOf<HTMLLabelElement>"
+        },
+        {
+          "name": "form",
+          "attribute": "form",
+          "description": "Associated form anywhere in the document by specifying it's *id*, it can override an ancestor form element.",
+          "type": "HTMLFormElement | null"
+        }
+      ]
+    },
+    {
+      "name": "ui-avatar",
+      "path": "./src/components/ui-avatar/ui-avatar.ts",
+      "description": "Avatar displays user picture or initials.",
+      "attributes": [
+        {
+          "name": "user",
+          "description": "Avatar's user name, defaults to text content or child image `alt`.",
+          "type": "string",
+          "default": "\"?\""
+        },
+        {
+          "name": "textonly",
+          "description": "Display text initials only.",
+          "type": "boolean",
+          "default": "\"false\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "user",
+          "attribute": "user",
+          "description": "Avatar's user name, defaults to text content or child image `alt`.",
+          "type": "string",
+          "default": "\"?\""
+        },
+        {
+          "name": "textonly",
+          "attribute": "textonly",
+          "description": "Display text initials only.",
+          "type": "boolean",
+          "default": "\"false\""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": "Renders avatar."
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--ui-badge-border-color",
+          "description": "Badge border color.",
+          "default": "\"transparent\""
+        }
+      ]
+    },
+    {
+      "name": "ui-avatar-group",
+      "path": "./src/components/ui-avatar-group/ui-avatar-group.ts",
+      "attributes": [
+        {
+          "name": "avatars",
+          "description": "List of group's avatars.",
+          "type": "NodeListOf<UiAvatar>"
+        },
+        {
+          "name": "show",
+          "description": "Maximum avatars to display.",
+          "type": "number",
+          "default": "3"
+        },
+        {
+          "name": "textonly",
+          "description": "Display avatar text initials only.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "avatars",
+          "attribute": "avatars",
+          "description": "List of group's avatars.",
+          "type": "NodeListOf<UiAvatar>"
+        },
+        {
+          "name": "show",
+          "attribute": "show",
+          "description": "Maximum avatars to display.",
+          "type": "number",
+          "default": "3"
+        },
+        {
+          "name": "textonly",
+          "attribute": "textonly",
+          "description": "Display avatar text initials only.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ]
+    },
+    {
+      "name": "ui-badge",
+      "path": "./src/components/ui-badge/ui-badge.ts",
+      "description": "Badge displays small text tags that can be used anywhere, including inside &lt;ui-button&gt;.",
+      "attributes": [
+        {
+          "name": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered;",
+          "type": "string | undefined"
+        },
+        {
+          "name": "hidden",
+          "description": "Hides the badge.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered;",
+          "type": "string | undefined"
+        },
+        {
+          "name": "hidden",
+          "attribute": "hidden",
+          "description": "Hides the badge.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": "Renders badge content."
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--ui-badge-background-color",
+          "description": "Badge background color.",
+          "default": "\"lightgrey\""
+        },
+        {
+          "name": "--ui-badge-border-color",
+          "description": "Badge border color.",
+          "default": "\"transparent\""
+        },
+        {
+          "name": "--ui-badge-text-color",
+          "description": "Badge text color.",
+          "default": "\"black\""
+        }
+      ]
+    },
+    {
+      "name": "ui-button",
+      "path": "./src/components/ui-button/ui-button.ts",
+      "description": "Buttons with a modern UI isolated from global style in a web component.",
+      "attributes": [
+        {
+          "name": "active",
+          "description": "Displays (emulated) `:active` state.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "busy",
+          "description": "Prevents interaction: the button cannot be pressed or focused, but displays an animated UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "description": "Prevents interaction : the button cannot be pressed or focused, and displays a dimmed UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "hidden",
+          "description": "Hides the button.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered and `ghost` are fully transparent button;\n- `round` are rounded button;\n- `small` have reduced padding;\n- `push` are 3d push button;\n- `dropdown` adds a dropdown arrow on button's end.",
+          "type": "string | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "labels",
+          "description": "Node list of attached labels.",
+          "type": "NodeListOf<HTMLLabelElement>"
+        },
+        {
+          "name": "active",
+          "attribute": "active",
+          "description": "Displays (emulated) `:active` state.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "busy",
+          "attribute": "busy",
+          "description": "Prevents interaction: the button cannot be pressed or focused, but displays an animated UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Prevents interaction : the button cannot be pressed or focused, and displays a dimmed UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "hidden",
+          "attribute": "hidden",
+          "description": "Hides the button.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered and `ghost` are fully transparent button;\n- `round` are rounded button;\n- `small` have reduced padding;\n- `push` are 3d push button;\n- `dropdown` adds a dropdown arrow on button's end.",
+          "type": "string | undefined"
+        }
+      ],
+      "events": [
+        {
+          "name": "formcontrol",
+          "description": "Custom event triggered on click to interact with parent &lt;form-control&gt; component.\n`formcontrol` event is not dispatched when &lt;ui-button&gt; is `disabled`, `busy` nor when `click` event is canceled."
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": "Renders content inside shadow button."
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--ui-button-text-color",
+          "description": "Button text color.",
+          "default": "\"inherit\""
+        },
+        {
+          "name": "--ui-button-background-color",
+          "description": "Button background color.",
+          "default": "\"transparent\""
+        },
+        {
+          "name": "--ui-button-border-color",
+          "description": "Button border color.",
+          "default": "\"currentColor\""
+        },
+        {
+          "name": "--ui-button-focus-color",
+          "description": "Button focus outline color.",
+          "default": "\"hsla(210, 5%, 55%, 50%)\""
+        },
+        {
+          "name": "--ui-button-border-radius",
+          "description": "Button border radius.",
+          "default": "\"0.25rem\""
+        },
+        {
+          "name": "--ui-button-padding",
+          "description": "Button padding.",
+          "default": "\"0.75em\""
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "button",
+          "description": "Reflects host state with customized style and aria attributes."
+        }
+      ]
+    },
+    {
+      "name": "ui-button-group",
+      "path": "./src/components/ui-button-group/ui-button-group.ts",
+      "description": "Displays buttons grouped together.",
+      "attributes": [
+        {
+          "name": "busy",
+          "description": "Prevents interaction: the buttons cannot be pressed or focused, but displays an animated UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "description": "Prevents interaction : the buttons cannot be pressed or focused, and displays a dimmed UI.",
+          "type": "boolean"
+        },
+        {
+          "name": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered and `ghost` are fully transparent button;\n- `round` are rounded button;\n- `small` have reduced padding;",
+          "type": "string | undefined"
+        }
+      ],
+      "properties": [
+        {
+          "name": "buttons",
+          "description": "Node list of children ui-buttons.",
+          "type": "NodeListOf<UiButton>"
+        },
+        {
+          "name": "busy",
+          "attribute": "busy",
+          "description": "Prevents interaction: the buttons cannot be pressed or focused, but displays an animated UI.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "Prevents interaction : the buttons cannot be pressed or focused, and displays a dimmed UI.",
+          "type": "boolean"
+        },
+        {
+          "name": "theme",
+          "attribute": "theme",
+          "description": "Use predefined UI styles, that can be combined like classes:\n\n- `action`, `danger` or `valid` are (blue, red & green) colored button;\n- `outline` have border only, until hovered and `ghost` are fully transparent button;\n- `round` are rounded button;\n- `small` have reduced padding;",
+          "type": "string | undefined"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": "Renders grouped buttons."
+        }
+      ]
+    },
+    {
+      "name": "ui-icon",
+      "path": "./src/components/ui-icon/ui-icon.ts",
+      "description": "Icon allows to style / size SVG like text and use colored emoji font.",
+      "attributes": [
+        {
+          "name": "hidden",
+          "description": "Hides the badge.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "hidden",
+          "attribute": "hidden",
+          "description": "Hides the badge.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": "Renders icon."
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--ui-icon-stroke-color",
+          "description": "Icon SVG stroke color.",
+          "default": "\"currentColor\""
+        },
+        {
+          "name": "--ui-icon-fill-color",
+          "description": "Icon SVG fill color.",
+          "default": "\"currentColor\""
+        }
+      ]
+    },
+    {
+      "name": "ui-ripple",
+      "path": "./src/components/ui-ripple/ui-ripple.ts",
+      "description": "Ripple animation played on parent element click.",
+      "attributes": [
+        {
+          "name": "unbounded",
+          "description": "Display ripple over offsetParent element, instead of direct parent.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "unbounded",
+          "attribute": "unbounded",
+          "description": "Display ripple over offsetParent element, instead of direct parent.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--ui-ripple-color",
+          "description": "Ripple effect color.",
+          "default": "\"currentColor\""
+        },
+        {
+          "name": "--ui-ripple-opacity",
+          "description": "Ripple effect opacity.",
+          "default": "\"0.25\""
+        },
+        {
+          "name": "--ui-ripple-duration",
+          "description": "Ripple effect duration.",
+          "default": "\"0.5s\""
+        }
+      ]
+    }
+  ]
+}

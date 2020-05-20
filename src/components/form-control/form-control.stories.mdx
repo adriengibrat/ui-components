@@ -1,0 +1,172 @@
+import { Description, Meta, Preview, Props, Story, action, boolean, html, optionsKnob, text } from '@open-wc/demoing-storybook';
+import { decorate, withActions } from 'storybook-prebuilt/addon-actions';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import '../ui-button';
+import '.';
+const enumerate = (object, properties = Object.keys(object)) =>
+  Object.setPrototypeOf(
+    Object.fromEntries(object instanceof FormData ? object : properties.map(key => [key, object[key]])),
+    Object.getPrototypeOf(object),
+  );
+const detailed =([event]) => [
+    event,
+    enumerate(new FormData(event.target)),
+    enumerate(event.target, ['id', 'action', 'encoding', 'method', 'noValidate', 'target']),
+  ];
+
+<Meta title="ui-components/form-control" parameters={{
+  options: { selectedPanel: 'storybook/actions/panel' }
+}} />
+
+# &lt;form-control&gt;
+
+### Control parent or external form like native button
+
+<Description of="form-control" />
+
+<Story name="playground" parameters={{
+  docs: { disable: true },
+  options: { selectedPanel: 'storybook/knobs/panel' },
+}}>
+{ () => html`
+  <form @submit=${decorate([detailed]).action('submit')} @reset=${action('reset')}>
+    <form-control
+      name="${ifDefined(text('Name', 'property', 'Data')||undefined)}"
+      value="${ifDefined(text('Value', 'content', 'Data')||undefined)}"
+      form="${ifDefined(optionsKnob('Control form', { parent: '', other: 'other'}, '', { display: 'inline-radio' }, 'Behaviour')||undefined)}"
+      type="${ifDefined(optionsKnob('Type', { none: '', submit: 'submit', reset: 'reset'}, '', { display: 'inline-radio' }, 'Behaviour')||undefined)}"
+      formaction="${ifDefined(text('Action', 'javascript:void 0;', 'Form')||undefined)}"
+      formenctype=${ifDefined(optionsKnob('Encoding', { none: '', urlencoded: 'application/x-www-form-urlencoded', multipart: 'multipart/form-data', plain: 'text/plain'}, '', { display: 'inline-radio' }, 'Form')||undefined)}
+      formmethod="${ifDefined(optionsKnob('Method', { none: '', get: 'get', post: 'post'}, '', { display: 'inline-radio' }, 'Form')||undefined)}"
+      formtarget="${ifDefined(optionsKnob('Target', { none: '', self: '_self', blank: '_blank', parent: '_parent', top: '_top'}, '', { display: 'inline-radio' }, 'Form')||undefined)}"
+      ?formnovalidate="${boolean('No validate', false, 'Form')}"
+    >
+      <ui-button>click & check actions</ui-button>
+    </form-control>
+  </form>
+  <form id="other" @submit=${decorate([detailed]).action('submit other')} @reset=${action('reset other')}></form>
+` }
+</Story>
+
+## Native behaviours
+
+The native behavior of &lt;label&gt; attached to &lt;button&gt; is supported
+(parent &lt;label&gt; or via &lt;button id="x"&gt; & &lt;label for="x"&gt; attributes link),
+but limited: dynamicly changing element `id` or label `for` attibute after &lt;form-control&gt; is connected to DOM won't be detected.
+
+<Preview>
+  <Story name="parent label">
+  { html`
+    <form @submit=${action('submit')} onsubmit="return false">
+      <label>parent label <form-control></form-control></label>
+    </form>
+  ` }
+  </Story>
+  <Story name="attached label">
+  { html`
+    <form @submit=${action('submit')} onsubmit="return false">
+      <form-control id="my-submit"></form-control>
+      <label for="my-submit">attached label</label>
+    </form>
+  ` }
+  </Story>
+  <Story name="external label">
+  { html`
+    <form id="my-form" @submit=${action('submit')} onsubmit="return false"></form>
+    <form-control id="my-submit" form="my-form"></form-control>
+    <label for="my-submit">external label</label>
+  ` }
+  </Story>
+</Preview>
+
+## Control attached form
+
+The native behavior of &lt;button&gt; attached to &lt;form&gt; (parent &lt;form&gt; or via &lt;button form="x"&gt; & &lt;form id="x"&gt; attributes link) is supported:<br/>
+by wrapping &lt;ui-button&gt; with a parent [&lt;form-control&gt;](../form-control) component that supports all &lt;form&gt; related attributes of native buttons,<br/>
+if you want a &lt;ui-button&gt; to interact with a form put it inside a [&lt;form-control&gt; with appropriate attributes](../form-control).
+
+<Preview columns="3">
+  <Story name="data">
+  { html`
+    <form @submit=${decorate([detailed]).action('form submit')} @formdata=${action('formdata built')} action="javascript:void 0">
+      <form-control
+        name="${ifDefined(text('Name', 'property')||undefined)}"
+        value="${ifDefined(text('Value', 'content')||undefined)}"
+        @formcontrol=${action('formcontrol bubbles')}>
+        <ui-button @click=${action('button click')}>submit value</ui-button>
+      </form-control>
+    </form>` }
+  </Story>
+  <Story name="events">
+  { html`
+    <form @submit=${action('form submit')} onsubmit="return false">
+      <form-control @formcontrol=${action('formcontrol bubbles')}>
+        <ui-button @click=${action('button click')}>submit event</ui-button>
+      </form-control>
+    </form>
+  ` }
+  </Story>
+  <Story name="form">
+  { html`
+    <form id="my-form" @submit=${action('external form submit')} onsubmit="return false"></form>
+    <!-- form-control ouside the controlled form -->
+    <form-control form="my-form">
+      <ui-button>control external form</ui-button>
+    </form-control>
+  ` }
+  </Story>
+  <Story name="formaction">
+  { html`
+    <form @submit=${decorate([detailed]).action('form action overrided')} onsubmit="return false">
+      <form-control formaction="https://example.com">
+        <ui-button>submit another url</ui-button>
+      </form-control>
+    </form>
+  ` }
+  </Story>
+  <Story name="formdata" decorators={[withActions()]}>
+  { () => html`
+    <form @submit=${decorate([detailed]).action('form data overrided')} onsubmit="return false">
+      <form-control @mousedown=${function() {
+        const data = new FormData();
+        data.append('a', 1);
+        this.value = data;
+      }}>
+        <ui-button>submit complex data</ui-button>
+      </form-control>
+    </form>
+  ` }
+  </Story>
+  <Story name="formmethod">
+  { html`
+    <form @submit=${decorate([detailed]).action('form method overrided')} onsubmit="return false">
+      <form-control formmethod="post">
+        <ui-button>submit post</ui-button>
+      </form-control>
+    </form>
+  ` }
+  </Story>
+  <Story name="formtarget">
+  { html`
+    <form @submit=${decorate([detailed]).action('form target overrided')} onsubmit="return false">
+        <form-control formtarget="_blank">
+          <ui-button>submit to new tab</ui-button>
+        </form-control>
+    </form>
+  ` }
+  </Story>
+  <Story name="reset">
+  { html`
+    <form @reset=${action('form reset')}>
+      <input name="text" value="some value" onmouseenter="this.value='another value'" style="font-size:1em;padding:.5em;border:1px solid grey;border-radius:.2rem">
+      <form-control type="reset">
+        <ui-button>reset form</ui-button>
+      </form-control>
+    </form>
+  ` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="form-control"/>

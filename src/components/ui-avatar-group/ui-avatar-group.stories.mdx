@@ -1,0 +1,54 @@
+import { Description, Meta, Preview, Props, Story, html } from '@open-wc/demoing-storybook';
+import { UiAvatarGroup } from '.';
+import '../ui-avatar';
+
+<Meta title="ui-components/ui-avatar-group" component={UiAvatarGroup} />
+
+# &lt;ui-avatar-group&gt;
+
+### Group of users avatar
+
+<Description of="ui-avatar-group" />
+
+<Preview>
+  <Story name="group">
+  { html`
+  <ui-avatar-group>
+    <ui-avatar><img src="https://eu.ui-avatars.com/api/?name=John+Doe" alt="John Doe"/></ui-avatar>
+    <ui-avatar><img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="User Name"/></ui-avatar>
+    <ui-avatar>adrien.gibrat@gmail.com</ui-avatar>
+  </ui-avatar-group>
+` }
+  </Story>
+  <Story name="textonly">
+  { html`
+  <ui-avatar-group textonly>
+    <ui-avatar><img src="https://api.adorable.io/avatars/128/6YHEG673" alt="Aurélie Antipot"/></ui-avatar>
+    <ui-avatar>aurelie.antipot@gmail.com</ui-avatar>
+    <ui-avatar><img src="ttps://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="Elliott Gibrat Antipot"/></ui-avatar>
+    <ui-avatar><img src="https://eu.ui-avatars.com/api/?name=John+Doe" alt="John Doe"/></ui-avatar>
+    <ui-avatar>adrien.gibrat@gmail.com</ui-avatar>
+  </ui-avatar-group>
+` }
+  </Story>
+</Preview>
+
+## Dark background
+
+<Preview>
+  <Story name="dark">
+  { html`
+  <div style="background: grey; padding: 2em;">
+    <ui-avatar-group>
+      <ui-avatar><img src="https://eu.ui-avatars.com/api/?name=John+Doe" alt="John Doe"/></ui-avatar>
+      <ui-avatar><img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="User Name"/></ui-avatar>
+      <ui-avatar>adrien.gibrat@gmail.com</ui-avatar>
+    </ui-avatar-group>
+  </div>
+` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-avatar-group" />

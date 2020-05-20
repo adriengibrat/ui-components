@@ -1,0 +1,70 @@
+import { Description, Meta, Preview, Props, Story, html } from '@open-wc/demoing-storybook';
+import { UiBadge } from '.';
+import '../ui-button';
+
+<Meta title="ui-components/ui-badge" component={UiBadge} />
+
+# &lt;ui-badge&gt;
+
+### Small badge component
+
+<Description of="ui-badge" />
+
+<Preview>
+  <Story name="default">
+  { html`<ui-badge>badge</ui-badge>` }
+  </Story>
+  <Story name="outline">
+  { html`<ui-badge theme="outline">outline</ui-badge>` }
+  </Story>
+  <Story name="custom">
+  { html`<ui-badge style="--ui-badge-text-color: white; --ui-badge-background-color: saddlebrown;">chocolate</ui-badge>` }
+  </Story>
+  <Story name="icon">
+  { html`<ui-badge><ui-icon>🏷</ui-icon> tag</ui-badge>` }
+  </Story>
+  <Story name="inline">
+  { html`Task <ui-badge theme="valid">99%</ui-badge> complete!` }
+  </Story>
+  <Story name="hidden">
+  { html`<em style="line-height: 1.4em">[hidden]</em> <ui-badge hidden>hidden</ui-badge>` }
+  </Story>
+</Preview>
+
+## Theming
+
+<Preview columns="3">
+  <Story name="action">
+  { html`<ui-badge theme="action">action</ui-badge>` }
+  </Story>
+  <Story name="danger">
+  { html`<ui-badge theme="danger">danger</ui-badge>` }
+  </Story>
+  <Story name="valid">
+  { html`<ui-badge theme="valid">valid</ui-badge>` }
+  </Story>
+  <Story name="outline action">
+  { html`<ui-badge theme="outline action">outline action</ui-badge>` }
+  </Story>
+  <Story name="outline danger">
+  { html`<ui-badge theme="outline danger">outline danger</ui-badge>` }
+  </Story>
+  <Story name="outline valid">
+  { html`<ui-badge theme="outline valid">outline valid</ui-badge>` }
+  </Story>
+</Preview>
+
+## Within Button
+
+<Preview>
+  <Story name="button">
+   { html`<ui-button theme="action">Messages <ui-badge>3</ui-badge></ui-button>` }
+  </Story>
+  <Story name="outline button">
+   { html`<ui-button theme="outline danger">Warning <ui-badge>3</ui-badge></ui-button>` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-badge" />

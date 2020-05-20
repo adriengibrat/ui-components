@@ -1,0 +1,79 @@
+import { Description, Meta, Preview, Props, Story, html } from '@open-wc/demoing-storybook';
+import { UiAvatar } from '.';
+import '../ui-button';
+
+<Meta title="ui-components/ui-avatar" component={UiAvatar} />
+
+# &lt;ui-avatar&gt;
+
+### User avatar component
+
+<Description of="ui-avatar" />
+
+<Preview>
+  <Story name="text">
+  { html`<ui-avatar>Text Content</ui-avatar>` }
+  </Story>
+  <Story name="email">
+  { html`<ui-avatar>user.name@domain.tld</ui-avatar>` }
+  </Story>
+  <Story name="user">
+  { html`<ui-avatar user="User Attribute"></ui-avatar>` }
+  </Story>
+  <Story name="img">
+  { html`
+  <ui-avatar>
+    <img src="https://joeschmoe.io/api/v1/Jane+Doe" alt="Jane Doe">
+  </ui-avatar>
+  ` }
+  </Story>
+  <Story name="svg">
+  { html`
+  <ui-avatar>
+    <svg viewBox="0 0 128 128">
+      <title>SVG Avatar</title>
+      <use xlink:href="#avatar"/>
+    </svg>
+  </ui-avatar>
+  ` }
+  </Story>
+</Preview>
+
+## Align
+
+<Preview>
+  <Story name="with text">
+  { html`<ui-avatar>John Doe</ui-avatar> John Doe` }
+  </Story>
+  <Story name="with button">
+  { html`
+  <ui-avatar>Any Text</ui-avatar>
+  <ui-button>Button</ui-button>
+  ` }
+  </Story>
+</Preview>
+
+## Custom
+
+<Preview>
+  <Story name="border">
+  { html`
+  <ui-avatar style="--ui-avatar-border-color: grey">
+    <svg viewBox="0 0 128 128">
+      <title>SVG Avatar</title>
+      <use xlink:href="#avatar"/>
+    </svg>
+  </ui-avatar>
+  ` }
+  </Story>
+  <Story name="borken img">
+  { html`<ui-avatar textonly><img src="https://broken-image.url" alt="Broken Image"></ui-avatar>` }
+  </Story>
+  <Story name="text only">
+  { html`<ui-avatar textonly><img src="https://api.adorable.io/avatars/128/6YHEG673" alt="Text Only"></ui-avatar>` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-avatar" />

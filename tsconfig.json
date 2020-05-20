@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src",
+    "typings.d.ts"
+  ],
+  "exclude": ["node_modules/!(@open-wc)"]
+}

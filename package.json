@@ -1,0 +1,110 @@
+{
+  "name": "@adriengibrat/ui-components",
+  "version": "0.0.1",
+  "description": "Clean & accessible webcomponents",
+  "author": "Adrien Gibrat <adrien.gibrat@gmail.com",
+  "license": "MIT",
+  "main": "lib/modules/index.js",
+  "module": "lib/modules/index.js",
+  "browser": "lib/browser/index.js",
+  "unpkg": "lib/unpkg/index.js",
+  "typings": "lib/ui-components.d.ts",
+  "files": [
+    "lib/",
+    "custom-elements.json"
+  ],
+  "scripts": {
+    "start": "npm run storybook -- --watch",
+    "lint": "npm run lint:syntax && npm run lint:format",
+    "lint:syntax": "eslint --ext .ts . --fix --ignore-path .gitignore",
+    "lint:format": "prettier '**/*.ts' --write --ignore-path .gitignore",
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:snapshots": "karma start --update-snapshots",
+    "test:snapshots:prune": "karma start --prune-snapshots",
+    "analyze": "wca analyze 'src/**/*.ts' --outFile custom-elements.json",
+    "build": "rm -rf lib && npm run babel && npm run typings && NODE_ENV=production rollup -c && rm -rf lib/typings",
+    "babel": "NODE_ENV=production babel --source-maps --extensions .ts --ignore **/*.spec.ts --out-dir lib/modules src",
+    "typings": "tsc --declaration --emitDeclarationOnly --outDir lib/typings",
+    "prepublishOnly": "npm run analyze && npm run build && npm run docs",
+    "up": "npm outdated; npm update && npm audit fix",
+    "storybook": "start-storybook --node-resolve",
+    "docs": "rm -rf docs && build-storybook --docs --output-dir docs"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.3",
+    "lit-element": "^2.2.1",
+    "lit-html": "^1.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.3",
+    "@babel/plugin-transform-runtime": "^7.10.3",
+    "@babel/preset-typescript": "^7.10.1",
+    "@open-wc/demoing-storybook": "^2.3.10",
+    "@open-wc/eslint-config": "^2.0.6",
+    "@open-wc/prettier-config": "^1.1.0",
+    "@open-wc/testing": "^2.5.18",
+    "@open-wc/testing-karma": "^3.4.5",
+    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "dts-bundle": "^0.7.3",
+    "es-dev-server": "^1.55.1",
+    "eslint": "7.2.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "rollup-plugin-dts": "^1.4.7",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-visualizer": "^4.0.4",
+    "web-component-analyzer": "^1.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
+    },
+    "rules": {
+      "import/extensions": [
+        "off"
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "*.conf.js",
+            "**/*.spec.ts"
+          ]
+        }
+      ],
+      "wc/guard-super-call": [
+        "off"
+      ]
+    }
+  },
+  "prettier": "@open-wc/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

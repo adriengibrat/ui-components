@@ -1,0 +1,36 @@
+import { Description, Meta, Preview, Props, Story, html } from '@open-wc/demoing-storybook';
+import { UiRipple } from './ui-ripple';
+import '../ui-button';
+
+<Meta title="ui-components/ui-ripple" component={UiRipple} />
+
+# &lt;ui-ripple&gt;
+
+### Ripple effect component
+
+<Description of="ui-ripple" />
+
+<Preview>
+  <Story name="ripple">
+  { html`<div style="line-height: 2.625em; text-align: center;"><ui-ripple>ripple</ui-ripple></div>` }
+  </Story>
+  <Story name="button">
+  { html`<ui-button><ui-ripple></ui-ripple> button</ui-button>` }
+  </Story>
+</Preview>
+
+## Custom
+
+<Preview>
+  <Story name="custom">
+  { html`
+  <div style="--ui-ripple-color: red; --ui-ripple-opacity: 0.8; --ui-ripple-duration: 2s; line-height: 8em; text-align: center;">
+    <ui-ripple unbounded>boom</ui-ripple>
+  </div>
+  ` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-ripple" />

@@ -1,0 +1,64 @@
+import { Description, Meta, Preview, Props, Story, html } from '@open-wc/demoing-storybook';
+import { UiIcon } from '.';
+
+<Meta title="ui-components/ui-icon" component={UiIcon} />
+
+# &lt;ui-icon&gt;
+
+### Emoji & SVG Icon component
+
+<Description of="ui-icon" />
+
+<Preview>
+  <Story name="emoji">
+  { html`<ui-icon>🍭</ui-icon>` }
+  </Story>
+  <Story name="svg">
+  { html`
+    <ui-icon style="color: red">
+      <svg viewBox="0 0 10 10"><path d="M7 9L5 8 3 9V6L1 4h3l1-3 1 3h3L7 6z"/></svg>
+    </ui-icon>
+  ` }
+  </Story>
+  <Story name="hidden">
+  { html`<em>[hidden]</em> <ui-icon hidden>🙈</ui-icon>` }
+  </Story>
+</Preview>
+
+## Within &lt;ui-button&gt; & &lt;ui-badge&gt;
+
+<Preview>
+  <Story id="ui-components-ui-button--icon"/>
+  <Story id="ui-components-ui-badge--icon"/>
+</Preview>
+
+## Sizing
+
+<Preview>
+  <Story name="big emoji">
+  { html`<ui-icon style="font-size: 3em">🍔</ui-icon>` }
+  </Story>
+  <Story name="big svg">
+  { html`
+    <ui-icon style="font-size: 3em; --ui-icon-fill-color: none;">
+      <svg viewBox="0 0 10 10"><path d="M7 9L5 8 3 9V6L1 4h3l1-3 1 3h3L7 6z"/></svg>
+    </ui-icon>
+  ` }
+  </Story>
+</Preview>
+
+## Custom
+
+<Preview>
+  <Story name="custom svg">
+  { html`
+    <ui-icon style="background-color: green; padding: 1em; --ui-icon-stroke-color: white; --ui-icon-fill-color: red;">
+      <svg viewBox="0 0 10 10"><path d="M7 9L5 8 3 9V6L1 4h3l1-3 1 3h3L7 6z"/></svg>
+    </ui-icon>
+  ` }
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-icon" />

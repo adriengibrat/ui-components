@@ -1,0 +1,181 @@
+import { Description, Meta, Preview, Props, Story, boolean, html, optionsKnob, text } from '@open-wc/demoing-storybook';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import { UiButtonGroup } from '../ui-button-group';
+import { UiRipple } from '../ui-ripple';
+import { UiButton } from '.';
+
+<Meta title="ui-components/ui-button" component={UiButton} />
+
+# &lt;ui-button&gt;
+
+### Modern & accessible button component
+
+<Description of="ui-button" />
+
+<Story name="playground" parameters={{
+  docs: { disable: true },
+  options: { selectedPanel: 'storybook/knobs/panel' },
+}}>
+{ () => html`
+  <ui-button
+    theme="${
+      optionsKnob('Color', { none: '', action: ' action', danger: ' danger', valid: ' valid' }, '', { display: 'inline-radio' }, 'Theme')
+    } ${
+      optionsKnob('Appearance', { push: ' push', round: ' round', dropdown: ' dropdown', outline: ' outline', ghost: ' ghost' }, '', { display: 'inline-check' }, 'Theme')
+    }"
+    ?disabled="${boolean('Disabled', false, 'State')}"
+    ?active="${boolean('Active', false, 'State')}"
+    ?busy="${boolean('Busy', false, 'State')}"
+    ?autofocus="${boolean('Autofocus', false, 'Native')}"
+    accesskey="${ifDefined(text('Access Key', 'b', 'Native')||undefined)}"
+    ?hidden="${boolean('Hidden', false, 'Native')}"
+  >
+    ${text('Text', 'button', 'Content')}
+  </ui-button>
+` }
+</Story>
+
+## Native behaviours
+
+Along &lt;ui-button&gt; custom element attibutes, usefull standard attributes are supported:
+- `accesskey` to define a *key* that will activate the button from keyboard shortcut:
+    - alt + *key* on most browsers and OS.
+    - alt + shift + *key* on Firefox.
+    - cmd + alt + *key* on mac OS.
+- `autofocus` to focus button on page load or on element DOM insertion.
+- `disabled` to prevents all user interactions with the button.
+- `hidden` to hide the button.
+
+The native behavior of &lt;label&gt; attached to &lt;button&gt; is supported
+(parent &lt;label&gt; or via &lt;ui-button id="x"&gt; & &lt;label for="x"&gt; attributes link),
+but limited: dynamicly changing element `id` or label `for` attibute after &lt;ui-button&gt; is connected to DOM won't be detected.
+
+<Preview>
+  <Story name="accesskey">
+  { html`<ui-button accesskey="b">accesskey <em>alt + b</em></ui-button>` }
+  </Story>
+  <Story name="autofocus">
+  { html`<ui-button autofocus>autofocus</ui-button>` }
+  </Story>
+  <Story name="disabled">
+  { html`<ui-button disabled>disabled</ui-button>` }
+  </Story>
+  <Story name="hidden">
+  { html`<em style="line-height: 2.625em">[hidden]</em> <ui-button hidden>hidden</ui-button>` }
+  </Story>
+  <Story name="label">
+  { html`<label for="my-button">click label</label> <ui-button id="my-button">labelled</ui-button>` }
+  </Story>
+</Preview>
+
+## States
+
+<Preview>
+  <Story id="ui-components-ui-button--button"></Story>
+  <Story name="active">
+  { html`<ui-button active>active</ui-button>` }
+  </Story>
+  <Story name="busy">
+  { html`<ui-button busy>busy</ui-button>` }
+  </Story>
+  <Story id="ui-components-ui-button--disabled"></Story>
+  <Story id="ui-components-ui-button--hidden"></Story>
+</Preview>
+
+## Theming
+
+Button appearance can be customized using the `theme` attribute and with CSS variables.
+
+<Preview>
+  <Story name="button">
+  { html`<ui-button>button</ui-button>` }
+  </Story>
+  <Story name="theme action">
+  { html`<ui-button theme="action">action</ui-button>` }
+  </Story>
+  <Story name="theme danger">
+  { html`<ui-button theme="danger">danger</ui-button>` }
+  </Story>
+  <Story name="theme valid">
+  { html`<ui-button theme="valid">valid</ui-button>` }
+  </Story>
+  <Story name="theme ghost">
+  { html`<ui-button theme="ghost">ghost</ui-button>` }
+  </Story>
+</Preview>
+
+### Appearances
+
+Button themes values can be combined together to create distinct appearances.
+
+<Preview>
+  <Story name="dropdown">
+  { html`<ui-button theme="dropdown action">dropdown</ui-button>` }
+  </Story>
+  <Story name="ripple">
+  { html`<ui-button><ui-ripple></ripple>ripple</ui-button>` }
+  </Story>
+  <Story name="outline">
+  { html`<ui-button theme="outline danger">outline</ui-button>` }
+  </Story>
+  <Story name="push">
+  { html`<ui-button theme="push danger">push</ui-button>` }
+  </Story>
+  <Story name="round">
+  { html`<ui-button theme="round valid">round</ui-button>` }
+  </Story>
+</Preview>
+
+### Custom
+
+<Preview>
+  <Story name="custom">
+  { html`<ui-button style="--ui-button-text-color: white; --ui-button-background-color: saddlebrown;">chocolate</ui-button>` }
+  </Story>
+  <Story name="icon">
+  { html`<ui-button theme="outline"><ui-icon>📌</ui-icon> pin</ui-button>` }
+  </Story>
+  <Story name="pill">
+  { html`<ui-button theme="round ghost"><ui-icon aria-label="mushroom">🍄</ui-icon><ui-ripple></ui-ripple></ui-button>` }
+  </Story>
+  <Story id="ui-components-ui-badge--button"/>
+  <Story name="inline">
+  { html`<span>Please, <ui-button theme="small outline action">complete</ui-button> task.</span>` }
+  </Story>
+</Preview>
+
+## Sizing
+
+<Preview>
+  <Story id="ui-components-ui-button--button"></Story>
+  <Story name="small">
+  { html`<ui-button theme="small">small</ui-button>` }
+  </Story>
+  <Story name="font-size">
+  { html`<ui-button style="font-size: .8em">small font size</ui-button>` }
+  </Story>
+  <Story name="padding">
+  { html`<ui-button style="--ui-button-padding: .5em 2em">custom padding</ui-button>` }
+  </Story>
+</Preview>
+
+## Control attached form
+
+The native behavior of &lt;button&gt; attached to &lt;form&gt; (parent &lt;form&gt; or via &lt;button form="x"&gt; & &lt;form id="x"&gt; attributes link) is supported:<br/>
+by wrapping &lt;ui-button&gt; with a parent [&lt;form-control&gt;](?path=/docs/ui-components-form-control--playground) component that supports all &lt;form&gt; related attributes of native buttons,<br/>
+if you want a &lt;ui-button&gt; to interact with a form put it inside a [&lt;form-control&gt; with appropriate attributes](?path=/docs/ui-components-form-control--playground).
+
+<Preview columns="3">
+  <Story id="ui-components-form-control--data"></Story>
+  <Story id="ui-components-form-control--events"></Story>
+  <Story id="ui-components-form-control--form"></Story>
+  <Story id="ui-components-form-control--formaction"></Story>
+  <Story id="ui-components-form-control--formdata"></Story>
+  <Story id="ui-components-form-control--formmethod"></Story>
+  <Story id="ui-components-form-control--formtarget"></Story>
+  <Story id="ui-components-form-control--reset"></Story>
+</Preview>
+
+## Properties
+
+<Props of="ui-button"/>
