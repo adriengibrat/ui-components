@@ -48,7 +48,7 @@
     "@open-wc/eslint-config": "^2.0.6",
     "@open-wc/prettier-config": "^1.1.0",
     "@open-wc/testing": "^2.5.18",
-    "@open-wc/testing-karma": "^3.4.5",
+    "@open-wc/testing-karma": "^4.0.9",
     "@rollup/plugin-babel": "^5.0.4",
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
