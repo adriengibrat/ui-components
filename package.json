@@ -32,7 +32,7 @@
     "docs": "rm -rf docs && build-storybook --docs --output-dir docs"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
+    "@babel/runtime": "^7.28.3",
     "lit-element": "^2.5.1",
     "lit-html": "^1.4.1"
   },
